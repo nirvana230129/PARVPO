@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <omp.h>
-#include <time.h>
 
 
 int sum_of_squares_parallel(int start, int stop, int step, int threads) {
-    int ans = 0; // Объявляем переменную ans вне параллельной секции
+    int ans = 0;
     #pragma omp parallel num_threads(threads) shared(start, stop, step) reduction(+:ans) default(none)
     #pragma omp for
         for (int i = start; i < stop; i += step)
